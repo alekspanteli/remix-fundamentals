@@ -7,9 +7,9 @@ async function getPosts() {
 }
 
 export const loader = async () => {
-  return json({
-    posts: await getPosts(),
-  });
+  const posts = await getPosts();
+  // return json({ posts });
+  return json({ posts: posts.map((p) => ({ slug: p.slug, title: p.title })) });
 };
 
 export default function Posts() {
