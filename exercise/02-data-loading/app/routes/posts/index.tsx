@@ -1,15 +1,11 @@
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
-import { prisma } from "~/db.server";
-
-async function getPosts() {
-  return prisma.post.findMany();
-}
+import { getPostListItems } from "~/models/post.server";
 
 export const loader = async () => {
-  const posts = await getPosts();
-  // return json({ posts });
-  return json({ posts: posts.map((p) => ({ slug: p.slug, title: p.title })) });
+  const posts = await getPostListItems();
+  return json({ posts });
+  // return json({ posts: posts.map((p) => ({ slug: p.slug, title: p.title })) });
 };
 
 export default function Posts() {
