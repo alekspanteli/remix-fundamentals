@@ -9,9 +9,8 @@ export async function loader({ params }: LoaderArgs) {
   return json({ post });
 }
 
-export default function PostSlug() {
-  const { post } = useLoaderData<typeof loader>();
-
+export default function PostRoute() {
+  const { post } = useLoaderData();
   return (
     <main className="mx-auto max-w-4xl">
       <h1 className="my-6 border-b-2 text-center text-3xl">{post.title}</h1>
